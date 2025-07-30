@@ -71,18 +71,18 @@
 
 ### Установка зависимостей
 Установите необходимые пакеты из файла `requirements.txt` командой:  
-`pip install -r requirements.txt`
+> `pip install -r requirements.txt`
 
 ### Запуск тестов
 Выполните команду:  
-`pytest --alluredir=allure_results`
+> `pytest --alluredir=allure_results`
 
 ### Просмотр отчета Allure
 1. Запустите сервер с отчетом:  
-`allure serve allure_results`
+> `allure serve allure_results`
 
 2. Для генерации статического отчета:  
-`allure generate allure_results -o allure_report --clean`  
+> `allure generate allure_results -o allure_report --clean`  
 После этого откройте файл `allure_report/index.html` в браузере.
 
 ## Структура проекта
