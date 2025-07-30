@@ -6,7 +6,7 @@ from data import ERROR_MESSAGES
 class TestUserOrders:
     @allure.title('Получить заказы авторизованного пользователя')
     @allure.description('Создать и авторизоваться пользователем, получить валидные ID ингредиентов, создать заказ, получить список заказов пользователя, проверить код ответа, статус и сверить номер заказа')
-    def test_get_orders_authenticated(self, auth_user, orders_methods, valid_ingredients_id):
+    def test_get_orders_authorized_success(self, auth_user, orders_methods, valid_ingredients_id):
         user_data = auth_user()
         access_token = user_data['response'].json()['accessToken']
         ingredients = valid_ingredients_id[:2]
@@ -24,7 +24,7 @@ class TestUserOrders:
     
     @allure.title('Получить заказы неавторизованного пользователя')
     @allure.description('Получить список заказов без авторизации, проверить код ответа, статус и текст ошибки')
-    def test_get_orders_unauthenticated(self, orders_methods):
+    def test_get_orders_unauthorized_failure(self, orders_methods):
         response = orders_methods.get_orders()
         response_json = response.json()
         

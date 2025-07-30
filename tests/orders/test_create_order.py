@@ -6,7 +6,7 @@ from data import ERROR_MESSAGES
 class TestOrderCreation:
     @allure.title('Создание заказа авторизованным пользователем')
     @allure.description('Создать и авторизоваться пользователем, получить валидные ID ингредиентов, создать заказ, проверить код ответа, статус и наличие номера заказа')
-    def test_create_order_authenticated(self, auth_user, orders_methods, valid_ingredients_id):
+    def test_create_order_authorized_success(self, auth_user, orders_methods, valid_ingredients_id):
         user_data = auth_user()
         access_token = user_data['response'].json()['accessToken']
         ingredients = valid_ingredients_id[:2]
@@ -22,7 +22,7 @@ class TestOrderCreation:
     
     @allure.title('Создание заказа неавторизованным пользователем (ОШИБКА В ДОКУМЕНТАЦИИ: ОЖИДАНИЕ - ОШИБКА, ФАКТ - УСПЕХ)')
     @allure.description('Получить валидные ID ингредиентов, создать заказ, проверить код ответа')
-    def test_create_order_unauthenticated(self, orders_methods, valid_ingredients_id):
+    def test_create_order_unauthorized_failure(self, orders_methods, valid_ingredients_id):
         ingredients = valid_ingredients_id[:2]
         
         response = orders_methods.create_order(ingredients=ingredients)
@@ -31,7 +31,7 @@ class TestOrderCreation:
     
     @allure.title('Создание заказа авторизованным пользователем без указания ингредиентов')
     @allure.description('Создать и авторизоваться пользователем, получить валидные ID ингредиентов, создать заказ без ингредиентов, проверить код ответа, статус и текст ошибки')
-    def test_create_order_no_ingredients(self, auth_user, orders_methods):
+    def test_create_order_no_ingredients_failure(self, auth_user, orders_methods):
         user_data = auth_user()
         access_token = user_data['response'].json()['accessToken']
         
@@ -46,7 +46,7 @@ class TestOrderCreation:
     
     @allure.title('Создание заказа авторизованным пользователем с невалидным ингредиентом')
     @allure.description('Создать и авторизоваться пользователем, создать заказ с невалидным ингредиентом, проверить код ответа')
-    def test_create_order_invalid_hash(self, auth_user, orders_methods):
+    def test_create_order_invalid_hash_failure(self, auth_user, orders_methods):
         user_data = auth_user()
         access_token = user_data['response'].json()['accessToken']
         

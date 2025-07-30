@@ -7,7 +7,7 @@ from data import ERROR_MESSAGES
 class TestUserRegistration:
     @allure.title('Регистрация пользователя с уникальными учетными данными')
     @allure.description('Зарегистрировать пользователя, проверить код ответа, статус и наличие accessToken')
-    def test_create_unique_user(self, create_user):
+    def test_register_user_unique_success(self, create_user):
         user_data = create_user()
         response = user_data["response"]
         response_json = response.json()
@@ -20,7 +20,7 @@ class TestUserRegistration:
 
     @allure.title('Регистрация пользователя с неуникальными учетными данными (пользователь с таким email уже есть)')
     @allure.description('Зарегистрировать Пользователя-1 с уникальными учетными данными, зарегистрировать Пользователя-2 с e-mail Пользователя-1, проверить код ответа, статус и текст ошибки')
-    def test_create_existing_user(self, create_user):
+    def test_register_user_existing_failure(self, create_user):
         first_user = create_user()
         
         second_user = create_user(
@@ -40,7 +40,7 @@ class TestUserRegistration:
     @allure.title('Регистрация пользователя с неполными учетными данными')
     @allure.description('Параметризацией выбрать пропускаемое поле, зарегистрировать пользователя, проверить код ответа, статус и тект ошибки')
     @pytest.mark.parametrize("missing_field", ["email", "password", "name"])
-    def test_create_user_missing_field(self, missing_field, user_methods):
+    def test_register_user_missing_field_failure(self, missing_field, user_methods):
         payload = {
             "email": "test@example.com",
             "password": "password",

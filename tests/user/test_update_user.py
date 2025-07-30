@@ -7,7 +7,7 @@ from data import ERROR_MESSAGES
 class TestUserUpdate:
     @allure.title('Обновить пользовательские данные авторизованного пользователя')
     @allure.description('Создать и авторизоваться пользователем, отправить корректные обновленные данные, проверить код ответа, статус, сверить учетные данные из ответа')
-    def test_update_authorized(self, auth_user, user_methods):
+    def test_update_user_authorized_success(self, auth_user, user_methods):
         user_data = auth_user()
         access_token = user_data['response'].json()['accessToken']
         payload = {
@@ -28,7 +28,7 @@ class TestUserUpdate:
     
     @allure.title('Обновить пользовательские данные неавторизованного пользователя')
     @allure.description('Отправить корректные обновленные данные (имя) без авторизации, проверить код ответа, статус и текст ошибки')
-    def test_update_unauthorized(self, user_methods):
+    def test_update_user_unauthorized_failure(self, user_methods):
         payload = {"name": "Should Fail"}
 
         response = user_methods.update_user(payload=payload)
