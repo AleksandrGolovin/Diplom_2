@@ -82,7 +82,7 @@
 > `allure serve allure_results`
 
 2. Для генерации статического отчета:  
-> `allure generate allure_results -o allure_report --clean`  
+> `allure generate allure_results -o allure_report --clean`
 После этого откройте файл `allure_report/index.html` в браузере.
 
 ## Структура проекта
