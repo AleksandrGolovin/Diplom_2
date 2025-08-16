@@ -1,3 +1,6 @@
+# Allure
+allure-results/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -37,19 +40,19 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
+# htmlcov/
+# .tox/
+# .nox/
 .coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py.cover
-.hypothesis/
+# .coverage.*
+# .cache
+# nosetests.xml
+# coverage.xml
+# *.cover
+# *.py.cover
+# .hypothesis/
 .pytest_cache/
-cover/
+# cover/
 
 # Translations
 *.mo
@@ -186,7 +189,7 @@ cython_debug/
 #  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
 #  and can be added to the global gitignore or merged into this file. However, if you prefer, 
 #  you could uncomment the following to ignore the entire vscode folder
-# .vscode/
+.vscode/
 
 # Ruff stuff:
 .ruff_cache/
